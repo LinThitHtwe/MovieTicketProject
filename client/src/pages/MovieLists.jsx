@@ -5,7 +5,7 @@ const MovieLists = () => {
   return (
     <>
       <SideNavBar />
-      <div className="ml-40 bg-gray-950 min-h-screen max-h-full p-4 text-white">
+      <div className="ml-40 bg-gradient-to-r from-gray-950 to-gray-900 min-h-screen max-h-full p-4 text-white">
         <div className="flex justify-between ">
           <div className="flex items-center gap-1">
             <svg

@@ -5,7 +5,7 @@ const CinemaCard = () => {
   const cinemas = Array(4).fill("Cinema ");
   return (
     <div className="h-[240px] flex justify-center items-center ">
-      <div className="h-[90%] w-[95%] bg-gray-900 p-4 rounded-lg shadow-custom shadow-slate-700 flex">
+      <div className="h-[90%] w-[95%] bg-gradient-to-r from-gray-900 to-gray-850 p-4 rounded-lg shadow-custom shadow-slate-700 flex">
         <div className="w-[40%]">
           <div className="overflow-hidden min-w-[95%] max-w-[95%] min-h-[100%] max-h-[100%] rounded-lg shadow-sm shadow-slate-700">
             <img
@@ -17,7 +17,7 @@ const CinemaCard = () => {
           </div>
         </div>
         <div className="w-full">
-          <div className="pb-2 border-blue-800 border-b-2 flex gap-3 items-center w-fit">
+          <div className="pb-2 border-red-600 border-b-2 flex gap-3 items-center w-fit">
             <span className="text-xl">Cinema Title</span>
             <svg
               xmlns="http://www.w3.org/2000/svg"

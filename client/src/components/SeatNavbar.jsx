@@ -3,9 +3,9 @@ import React from "react";
 const SeatNavbar = () => {
   return (
     <div className="mt-10 flex h-[120px]">
-      <div className="w-[60%] ">
+      <div className="w-full ">
         <p className="mb-2 p-2 border-gray-900 border-b-2 w-[60%] ">Date</p>
-        <select className="p-1 ml-2 mt-2 w-44 rounded-lg text-gray-950 focus:ring-blue-500">
+        <select className="p-1 ml-2 mt-2 w-44 rounded-lg text-gray-950 focus:ring-blue-500 outline-none">
           <option value="#" selected>
             02-11-2023
           </option>

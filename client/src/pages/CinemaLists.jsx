@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const CinemaLists = () => {
   return (
-    <div className="ml-40  bg-gray-950 text-white min-h-screen max-h-full">
+    <div className="ml-40  bg-gradient-to-r from-gray-950 to-gray-900 text-white min-h-screen max-h-full">
       <div className="flex justify-between">
         <Link to="/movie/id" className=" ml-4 p-3  block">
           <svg
@@ -22,10 +22,11 @@ const CinemaLists = () => {
             />
           </svg>
         </Link>
+        <h2>Movie</h2>
         <div className="flex gap-1 items-center mr-5 mt-2">
           <input
             className="p-[5px] rounded-lg outline-none placeholder-gray-950 text-gray-950 placeholder-opacity-50"
-            placeholder="Search"
+            placeholder="Search Cinema"
             type="text"
           />
           <svg

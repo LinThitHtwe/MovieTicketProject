@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const MovieDetails = () => {
   return (
-    <div className="relative bg-gray-950 min-h-screen max-h-full ml-40 text-white  flex justify-evenly overflow-y-hidden">
+    <div className="relative bg-gradient-to-r from-gray-950 to-gray-900 min-h-screen max-h-full ml-40 text-white  flex justify-evenly overflow-y-hidden">
       <div className="  w-full min-h-screen max-h-full flex justify-center flex-col items-center align-middle">
         <div className=" p-6 w-[60%] h-[80%]  overflow-hidden ">
           <img
