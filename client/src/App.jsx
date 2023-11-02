@@ -12,6 +12,7 @@ import SidebarLayout from "./SidebarLayout";
 import MovieDetails from "./pages/MovieDetails";
 import Layout from "./Layout";
 import CinemaLists from "./pages/CinemaLists";
+import SeatPage from "./pages/SeatPage";
 
 function App() {
   const router = createBrowserRouter([
@@ -36,7 +37,10 @@ function App() {
     {
       path: "/",
       element: <Layout />,
-      children: [{ path: "/", element: <Home /> }],
+      children: [
+        { path: "/", element: <Home /> },
+        { path: "/seats", element: <SeatPage /> },
+      ],
     },
   ]);
 

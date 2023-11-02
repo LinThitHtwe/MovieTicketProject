@@ -2,11 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const CinemaCard = () => {
-  const cinemas = Array(4).fill("Cinema I");
+  const cinemas = Array(4).fill("Cinema ");
   return (
     <div className="h-[240px] flex justify-center items-center ">
       <div className="h-[90%] w-[95%] bg-gray-900 p-4 rounded-lg shadow-custom shadow-slate-700 flex">
-        <div className="w-[110%]">
+        <div className="w-[40%]">
           <div className="overflow-hidden min-w-[95%] max-w-[95%] min-h-[100%] max-h-[100%] rounded-lg shadow-sm shadow-slate-700">
             <img
               className="min-h-[100%] max-h-[100%] min-w-[100%] max-w-[100%] object-cover rounded-lg 
@@ -38,11 +38,11 @@ const CinemaCard = () => {
             {cinemas.map((cinema, index) => (
               <Link
                 key={index}
-                to={`/cinema/${index}`}
+                to={`/seats`}
                 className="p-2 ml-2 bg-gray-800 rounded-2xl shadow-custom shadow-slate-700
                  hover:bg-gray-700 hover:scale-105 transition-all duration-300 ease-in-out inline-block "
               >
-                {cinema}
+                {cinema + (index + 1)}
               </Link>
             ))}
           </div>

@@ -21,19 +21,19 @@ const SideNavBar = () => {
             />
           </svg>
         </li>
-        <li className="py-2 px-4 border-red-600 border-l-2 hover:bg-gray-800 cursor-pointer">
+        <li className="py-2 px-4  border-red-600 border-l-2 hover:bg-gray-800 transition-all duration-500 ease-in-out cursor-pointer">
           Navbar
         </li>
-        <li className="py-2 px-4 border-gray-900 border-l-2 hover:bg-gray-800 cursor-pointer">
+        <li className="py-2 px-4 border-gray-900 border-l-2 hover:bg-gray-800 transition-all duration-500 ease-in-out cursor-pointer">
           Navbar
         </li>
-        <li className="py-2 px-4  border-gray-900 border-l-2 hover:bg-gray-800 cursor-pointer">
+        <li className="py-2 px-4 border-gray-900 border-l-2 hover:bg-gray-800 transition-all duration-500 ease-in-out cursor-pointer">
           Navbar
         </li>
-        <li className="py-2 px-4  border-gray-900 border-l-2  hover:bg-gray-800 cursor-pointer">
+        <li className="py-2 px-4 border-gray-900 border-l-2  hover:bg-gray-800 transition-all duration-500 ease-in-out cursor-pointer">
           Navbar
         </li>
-        <li className="py-2 px-4  border-gray-900 border-l-2 hover:bg-gray-800 cursor-pointer">
+        <li className="py-2 px-4 border-gray-900 border-l-2 hover:bg-gray-800 transition-all duration-500 ease-in-out cursor-pointer">
           Navbar
         </li>
       </ul>
