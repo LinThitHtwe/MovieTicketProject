@@ -1,12 +1,12 @@
 import axios from "axios";
 import { useQuery } from "react-query";
 //import { fetchMovies } from "../query-functions/movieQueryFunction";
-const fetchMovies = async () => {
-  const response = await axios.get("http://localhost:4000/Tbl_MovieList");
+const fetchMovies = async (fetchUrl) => {
+  const response = await axios.get(fetchUrl);
   return response.data;
 };
-const UseListData = () => {
-  return useQuery(["movies"], fetchMovies);
+const UseListData = (queryKey, fetchUrl) => {
+  return useQuery(queryKey, () => fetchMovies(fetchUrl));
 };
 
 export default UseListData;

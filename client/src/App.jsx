@@ -12,7 +12,7 @@ import axios from "axios";
 import { ReactQueryDevtools } from "react-query/devtools";
 
 const queryClient = new QueryClient();
-//axios.defaults.baseURL = "http://localhost:4000";
+axios.defaults.baseURL = "http://localhost:4000";
 function App() {
   const router = createBrowserRouter([
     {
