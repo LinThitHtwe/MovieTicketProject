@@ -46,11 +46,7 @@ const CinemaLists = () => {
         </div>
       </div>
       <div className="grid grid-cols-1 gap-1">
-        {Array(6)
-          .fill()
-          .map((_, index) => (
-            <CinemaCard key={index} />
-          ))}
+        <CinemaCard />
       </div>
     </div>
   );
