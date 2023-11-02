@@ -1,24 +1,50 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter,
+  Route,
+  RouterProvider,
+  Routes,
+  createBrowserRouter,
+} from "react-router-dom";
 import Home from "./pages/Home";
 import MovieLists from "./pages/MovieLists";
-import SideNavBar from "./components/SideNavBar";
+import SidebarLayout from "./SidebarLayout";
+import MovieDetails from "./pages/MovieDetails";
+import Layout from "./Layout";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const router = createBrowserRouter([
+    {
+      path: "/movie",
+      element: <SidebarLayout />,
+      children: [
+        {
+          path: "/movie/all",
+          element: <MovieLists />,
+        },
+        {
+          path: "/movie/id",
+          element: <MovieDetails />,
+        },
+      ],
+    },
+    {
+      path: "/",
+      element: <Layout />,
+      children: [{ path: "/", element: <Home /> }],
+    },
+  ]);
 
   return (
     <>
-      <BrowserRouter>
+      <RouterProvider router={router} />
+      {/* <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
 
           <Route path="/all" element={<MovieLists />} />
         </Routes>
-      </BrowserRouter>
+      </BrowserRouter> */}
     </>
   );
 }

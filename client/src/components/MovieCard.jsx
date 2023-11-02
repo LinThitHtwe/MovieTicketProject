@@ -1,9 +1,10 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const MovieCard = () => {
   return (
     <>
-      <div>
+      <Link to="/movie/id">
         <div
           className="relative bg-gray-950 rounded-lg min-h-[350px] max-h-[350px] overflow-hidden
       min-w-[260px] max-w-[260px]
@@ -30,8 +31,8 @@ const MovieCard = () => {
             />
           </svg>
         </div>
-        <h2 className="text-center mt-2 cursor-pointer">Movie Card</h2>
-      </div>
+        <h2 className="text-center mt-2 cursor-pointer">Movie Name</h2>
+      </Link>
     </>
   );
 };

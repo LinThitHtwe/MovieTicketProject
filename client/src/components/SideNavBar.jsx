@@ -12,7 +12,7 @@ const SideNavBar = () => {
             viewBox="0 0 24 24"
             stroke-width="1.5"
             stroke="currentColor"
-            class="w-6 h-6 hover:w-7 hover:h-7"
+            class="w-6 h-6 hover:w-7 hover:h-7 cursor-pointer"
           >
             <path
               stroke-linecap="round"
@@ -21,19 +21,19 @@ const SideNavBar = () => {
             />
           </svg>
         </li>
-        <li className="py-2 px-4 border-red-600 border-l-2 hover:bg-gray-800 ">
+        <li className="py-2 px-4 border-red-600 border-l-2 hover:bg-gray-800 cursor-pointer">
           Navbar
         </li>
-        <li className="py-2 px-4 border-gray-900 border-l-2 hover:bg-gray-800">
+        <li className="py-2 px-4 border-gray-900 border-l-2 hover:bg-gray-800 cursor-pointer">
           Navbar
         </li>
-        <li className="py-2 px-4  border-gray-900 border-l-2 hover:bg-gray-800">
+        <li className="py-2 px-4  border-gray-900 border-l-2 hover:bg-gray-800 cursor-pointer">
           Navbar
         </li>
-        <li className="py-2 px-4  border-gray-900 border-l-2  hover:bg-gray-800">
+        <li className="py-2 px-4  border-gray-900 border-l-2  hover:bg-gray-800 cursor-pointer">
           Navbar
         </li>
-        <li className="py-2 px-4  border-gray-900 border-l-2 hover:bg-gray-800">
+        <li className="py-2 px-4  border-gray-900 border-l-2 hover:bg-gray-800 cursor-pointer">
           Navbar
         </li>
       </ul>

@@ -5,7 +5,7 @@ const MovieLists = () => {
   return (
     <>
       <SideNavBar />
-      <div className="ml-40 bg-gray-950 h-full p-4 text-white">
+      <div className="ml-40 bg-gray-950 min-h-screen max-h-full p-4 text-white">
         <div className="flex justify-between ">
           <div className="flex items-center gap-1">
             <svg
@@ -14,7 +14,7 @@ const MovieLists = () => {
               viewBox="0 0 24 24"
               stroke-width="1.5"
               stroke="currentColor"
-              class="w-6 h-6"
+              class="w-6 h-6 cursor-pointer"
             >
               <path
                 stroke-linecap="round"
@@ -23,7 +23,9 @@ const MovieLists = () => {
               />
             </svg>
 
-            <h1 className=" text-white ml-3 sticky text-xl">Movie Lists</h1>
+            <a className=" text-white ml-3 sticky text-xl cursor-pointer">
+              Movie Lists
+            </a>
           </div>
           <div className="flex gap-1 items-center">
             <input
@@ -37,7 +39,7 @@ const MovieLists = () => {
               viewBox="0 0 24 24"
               stroke-width="1.5"
               stroke="currentColor"
-              class="w-7 h-7 hover:scale-105 transition-all duration-500 ease-in-out"
+              class="w-7 h-7 hover:scale-105 transition-all duration-500 ease-in-out cursor-pointer"
             >
               <path
                 stroke-linecap="round"
