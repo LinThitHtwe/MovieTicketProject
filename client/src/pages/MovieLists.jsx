@@ -50,11 +50,7 @@ const MovieLists = () => {
           </div>
         </div>
         <div className="grid grid-cols-4 gap-10 mt-6">
-          {Array(8)
-            .fill()
-            .map((_, index) => (
-              <MovieCard key={index} />
-            ))}
+          <MovieCard />
         </div>
         <div className="flex justify-center">
           <a
