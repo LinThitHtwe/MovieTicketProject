@@ -11,6 +11,7 @@ import MovieLists from "./pages/MovieLists";
 import SidebarLayout from "./SidebarLayout";
 import MovieDetails from "./pages/MovieDetails";
 import Layout from "./Layout";
+import CinemaLists from "./pages/CinemaLists";
 
 function App() {
   const router = createBrowserRouter([
@@ -25,6 +26,10 @@ function App() {
         {
           path: "/movie/id",
           element: <MovieDetails />,
+        },
+        {
+          path: "/movie/cinemas",
+          element: <CinemaLists />,
         },
       ],
     },

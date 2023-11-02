@@ -1,8 +1,9 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const MovieDetails = () => {
   return (
-    <div className="bg-gray-950 min-h-screen max-h-full ml-40 text-white  flex justify-evenly overflow-y-hidden">
+    <div className="relative bg-gray-950 min-h-screen max-h-full ml-40 text-white  flex justify-evenly overflow-y-hidden">
       <div className="  w-full min-h-screen max-h-full flex justify-center flex-col items-center align-middle">
         <div className=" p-6 w-[60%] h-[80%]  overflow-hidden ">
           <img
@@ -17,7 +18,7 @@ const MovieDetails = () => {
         <span className="text-3xl border-red-600 border-b-2 w-fit pb-3">
           Movie Detail
         </span>
-        <div className="flex flex-col gap-8 w-[80%]">
+        <div className="flex flex-col gap-6 w-[80%]">
           <span>Title : Something</span>
           <span>Duration : Something</span>
           <span>ShowDate : Something</span>
@@ -28,10 +29,29 @@ const MovieDetails = () => {
             perspiciatis perferendis a. Hic, quidem cupiditate?
           </p>
         </div>
-        <button className="bg-gradient-to-r from-cyan-600 to-blue-600 w-fit p-3 rounded-md absolute right-10 bottom-5 shadow-custom shadow-blue-500 hover:scale-[1.02] transition-all duration-300 ease-in-out">
+        <Link
+          to="/movie/cinemas"
+          className="bg-gradient-to-r from-cyan-600 to-blue-600 w-fit p-3 rounded-md absolute right-10 bottom-5 shadow-custom shadow-blue-500 hover:scale-[1.02] transition-all duration-300 ease-in-out"
+        >
           Book Movie
-        </button>
+        </Link>
       </div>
+      <Link to="/movie/all">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="w-8 h-8 absolute left-10 top-10 hover:w-9 hover:h-9 transition-all duration-300 ease-in-out"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M9 15L3 9m0 0l6-6M3 9h12a6 6 0 010 12h-3"
+          />
+        </svg>
+      </Link>
     </div>
   );
 };
