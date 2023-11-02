@@ -1,10 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import SeatNavbar from "../components/SeatNavbar";
 
 const SeatPage = () => {
   return (
     <div className="flex gap-2 relative">
-      <Link to="/movie/cinema">
+      <Link to="/movie/cinemas">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -31,18 +32,18 @@ const SeatPage = () => {
         </div>
       </div>
       <div className="w-full  h-screen">
-        <div className="mt-10 ">nav</div>
-        <div className="p-4 mt-24 ml-10 w-fit h-fit border-white border-2">
-          <a className="border-white border-2 p-1 h-3 w-3 rounded-lg">A1</a>
-          <a className="border-white border-2 p-1 h-3 w-3 rounded-lg">A1</a>
-          <a className="border-white border-2 p-1 h-3 w-3 rounded-lg">A1</a>
-          <a className="border-white border-2 p-1 h-3 w-3 rounded-lg">A1</a>
-          <a className="border-white border-2 p-1 h-3 w-3 rounded-lg">A1</a>
-          <a className="border-white border-2 p-1 h-3 w-3 rounded-lg">A1</a>
-          <a className="border-white border-2 p-1 h-3 w-3 rounded-lg">A1</a>
-          <a className="border-white border-2 p-1 h-3 w-3 rounded-lg">A1</a>
-          <a className="border-white border-2 p-1 h-3 w-3 rounded-lg">A1</a>
-          <a className="border-white border-2 p-1 h-3 w-3 rounded-lg">A1</a>
+        <SeatNavbar />
+        <div className="p-4 mt-10 ml-10 w-fit h-fit border-white border-2 ">
+          {Array(10)
+            .fill()
+            .map((_, index) => (
+              <a
+                key={index}
+                className="border-white border-2 p-1 h-[20px] w-[20px] text-sm overflow-hidden rounded-lg"
+              >
+                A{index + 1}
+              </a>
+            ))}
         </div>
       </div>
     </div>
