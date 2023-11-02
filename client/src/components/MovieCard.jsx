@@ -1,10 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import UseListData from "../hooks/useListData";
+import UseFetchData from "../hooks/useFetchData";
 
 const fetchUrl = "/Tbl_MovieList";
 const MovieCard = () => {
-  const { isLoading, isError, error, data } = UseListData(["movies"], fetchUrl);
+  const { isLoading, isError, error, data } = UseFetchData(
+    ["movies"],
+    fetchUrl
+  );
   return (
     <>
       {isLoading && <p>Loading...</p>}

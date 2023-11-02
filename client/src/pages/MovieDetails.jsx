@@ -1,16 +1,13 @@
 import React from "react";
 import { Link, useParams } from "react-router-dom";
-import UseFetchSingleData from "../hooks/useFetchSingleData";
+import UseFetchData from "../hooks/useFetchData";
 
 const MovieDetails = () => {
   const { id } = useParams();
   const queryKey = ["movie", id];
   const fetchUrl = `/Tbl_MovieList?MovieId=${id}`;
 
-  const { isLoading, isError, error, data } = UseFetchSingleData(
-    queryKey,
-    fetchUrl
-  );
+  const { isLoading, isError, error, data } = UseFetchData(queryKey, fetchUrl);
   return (
     <>
       {isLoading && (
