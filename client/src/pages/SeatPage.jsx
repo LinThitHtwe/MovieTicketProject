@@ -2,7 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import SeatNavbar from "../components/SeatNavbar";
 
+import UseFetchData from "../hooks/useFetchData";
 const SeatPage = () => {
+  const { data } = UseFetchData(["seat", 1], "/Tbl_RoomSeat?RoomId=1");
+
   return (
     <div className="flex gap-2 relative">
       <Link to="/movie/cinemas">
@@ -21,7 +24,7 @@ const SeatPage = () => {
           />
         </svg>
       </Link>
-      <div className="w-[40%] p-4 h-screen">
+      <div className="w-[10%] p-4 h-screen">
         <div className="min-w-[80%] max-w-[80%] min-h-[80%] max-h-[80%] ml-10 mt-14 rounded-lg overflow-hidden">
           <img
             className="object-cover min-h-[100%] min-w-full max-h-[100%] 
@@ -34,17 +37,49 @@ const SeatPage = () => {
       <div className="w-full  h-screen">
         <SeatNavbar />
         <div className="p-4 mt-10 ml-10 w-fit h-auto border-white border-2 rounded-xl">
+        {data &&
+  data
+    .filter((d) => d.RowName === 'A')
+    .map((d, index) => (
+      <div
+        key={index}
+        className="border-white border-2 rounded-xl inline-block cursor-pointer p-2 ml-4 min-w-[38px] max-w-[38px] min-h-[38px] max-h-[38px] hover:bg-white transition-all duration-700 ease-in-out hover:text-gray-950 hover:scale-[1.02]"
+      >
+        <div className="flex justify-center items-center">
+          <span className="text-sm inline-block">{d.RowName}{d.SeatNo}</span>
+        </div>
+      </div>
+    ))}
+
+          {/* {Array(16)
+            .fill()
+            .map((_, index) => (
+              <div
+                key={index}
+                className="border-white border-2  rounded-xl inline-block cursor-pointer 
+                p-2 ml-4 min-w-[38px] max-w-[38px] min-h-[38px] max-h-[38px] 
+                hover:bg-white transition-all duration-700 ease-in-out hover:text-gray-950 hover:scale-[1.02]"
+              >
+                <div className="flex justify-center items-center">
+                  <span className=" text-sm  inline-block">A{index + 1}</span>
+                </div>
+              </div>
+            ))}
+          <br />
           {Array(16)
             .fill()
             .map((_, index) => (
-              <a
+              <div
                 key={index}
-                className="border-white border-2 cursor-pointer p-1 ml-4 max-h-[60px] max-w-[60px] min-h-[60px] min-w-[60px] 
-                text-sm overflow-hidden rounded-lg hover:bg-white hover:text-gray-950 transition-all duration-700 ease-in-out"
+                className="border-white border-2  rounded-xl inline-block cursor-pointer
+                 p-2 ml-4 min-w-[38px] max-w-[38px] min-h-[38px] max-h-[38px] 
+                 hover:bg-white transition-all duration-700 ease-in-out hover:text-gray-950 "
               >
-                A{index + 1}
-              </a>
-            ))}
+                <div className="flex justify-center items-center">
+                  <span className="text-sm  inline-block">B{index + 1}</span>
+                </div>
+              </div>
+            ))} */}
         </div>
       </div>
     </div>
