@@ -10,8 +10,19 @@ const MovieCard = () => {
   );
   return (
     <>
-      {isLoading && <p>Loading...</p>}
-      {isError && <p>{error}</p>}
+      {isLoading &&
+        Array(8)
+          .fill()
+          .map((_, index) => (
+            <div
+              key={index}
+              className="relative bg-gray-900 rounded-lg min-h-[350px] max-h-[350px] min-w-[260px] max-w-[260px] shadow-md shadow-slate-800 transition-all duration-500 ease-in-out cursor-pointer text-center text-white group skeleton-animation"
+            >
+              <div className="min-h-[100%] min-w-full max-h-[100%] "></div>
+            </div>
+          ))}
+
+      {isError && <p>{error.message}</p>}
       {data &&
         data.map((d) => (
           <Link to={`/movie/${d.MovieId}`}>
