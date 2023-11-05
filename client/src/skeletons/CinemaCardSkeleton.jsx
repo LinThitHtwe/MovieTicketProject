@@ -3,7 +3,7 @@ import CinemaRoomSkeleton from "./CinemaRoomSkeleton";
 
 export default function CinemaCardSkeleton() {
   return (
-    <div key={index} className="h-[240px] flex justify-center items-center">
+    <div className="h-[240px] flex justify-center items-center">
       <div className="h-[90%] w-[95%] bg-gradient-to-r from-gray-900 to-gray-850 p-4 rounded-lg shadow-custom shadow-slate-700 flex">
         <div className="w-[40%]">
           <div className="overflow-hidden min-w-[95%] max-w-[95%] min-h-[100%] max-h-[100%] rounded-lg shadow-sm shadow-slate-700">
