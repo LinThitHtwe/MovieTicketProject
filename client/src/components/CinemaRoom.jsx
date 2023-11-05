@@ -1,9 +1,10 @@
 import React from "react";
 import UseFetchData from "../hooks/useFetchData";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import CinemaRoomSkeleton from "../skeletons/CinemaRoomSkeleton";
 
 const CinemaRoom = ({ cinemaId }) => {
+  const { id } = useParams();
   const queryKey = ["cinema-room", cinemaId];
   const fetchUrl = `/Tbl_CinemaRoom?CinemaId=${cinemaId}`;
   const { isLoading, data } = UseFetchData(queryKey, fetchUrl);
@@ -22,7 +23,7 @@ const CinemaRoom = ({ cinemaId }) => {
         {data &&
           data.map((d) => (
             <Link
-              to={`/seats`}
+              to={`/seats/${id}/${d.RoomId}`}
               className="p-2 ml-2 bg-gray-800 rounded-2xl shadow-custom shadow-slate-700
                  hover:bg-gray-700 hover:scale-105 transition-all duration-300 ease-in-out inline-block "
             >

@@ -1,14 +1,19 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import SeatNavbar from "../components/SeatNavbar";
 
 import UseFetchData from "../hooks/useFetchData";
+import SeatPrice from "../components/SeatPrice";
 const SeatPage = () => {
-  const { data } = UseFetchData(["seat", 1], "/Tbl_RoomSeat?RoomId=1");
+  const { id, roomId } = useParams();
+  const { data } = UseFetchData(
+    ["seat", roomId],
+    `/Tbl_RoomSeat?RoomId=${roomId}`
+  );
 
   return (
     <div className="flex gap-2 relative">
-      <Link to="/movie/cinemas">
+      <Link to={`/movie/cinemas/${id}`}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -24,7 +29,7 @@ const SeatPage = () => {
           />
         </svg>
       </Link>
-      <div className="w-[10%] p-4 h-screen">
+      <div className="w-[10%] p-4 min-h-screen max-h-full">
         <div className="min-w-[80%] max-w-[80%] min-h-[80%] max-h-[80%] ml-10 mt-14 rounded-lg overflow-hidden">
           <img
             className="object-cover min-h-[100%] min-w-full max-h-[100%] 
@@ -34,7 +39,7 @@ const SeatPage = () => {
           <p className="text-center p-4">Movie Title</p>
         </div>
       </div>
-      <div className="w-full  h-screen">
+      <div className="w-full  h-screen ml-5">
         <SeatNavbar />
         <div className="p-4 mt-10 ml-10 w-fit h-auto border-white border-2 rounded-xl">
           <div className="flex justify-center">
@@ -160,7 +165,11 @@ const SeatPage = () => {
                     key={index}
                     className={`${
                       d.SeatNo === null ? "opacity-0" : "border-white border-2"
-                    } rounded-xl inline-block mt-3 cursor-pointer p-1 ml-3 min-w-[38px] max-w-[38px] min-h-[38px] max-h-[38px] ${
+                    } rounded-xl inline-block mt-3 cursor-pointer p-1 ml-3 ${
+                      d.SeatType == "couple"
+                        ? "min-w-[68px] max-w-[68px]"
+                        : "min-w-[38px] max-w-[38px]"
+                    }min-w-[38px] max-w-[38px] min-h-[38px] max-h-[38px] ${
                       d.SeatNo === null
                         ? ""
                         : "hover:bg-white transition-all duration-700 ease-in-out hover:text-gray-950 hover:scale-[1.02]"
@@ -222,7 +231,11 @@ const SeatPage = () => {
                     key={index}
                     className={`${
                       d.SeatNo === null ? "opacity-0" : "border-white border-2"
-                    } rounded-xl inline-block mt-2 cursor-pointer p-1 ml-3 min-w-[38px] max-w-[38px] min-h-[38px] max-h-[38px] ${
+                    } rounded-xl inline-block mt-3 cursor-pointer p-1 ml-3 ${
+                      d.SeatType == "couple"
+                        ? "min-w-[68px] max-w-[68px]"
+                        : "min-w-[38px] max-w-[38px]"
+                    }min-w-[38px] max-w-[38px] min-h-[38px] max-h-[38px] ${
                       d.SeatNo === null
                         ? ""
                         : "hover:bg-white transition-all duration-700 ease-in-out hover:text-gray-950 hover:scale-[1.02]"
@@ -251,7 +264,110 @@ const SeatPage = () => {
                     key={index}
                     className={`${
                       d.SeatNo === null ? "opacity-0" : "border-white border-2"
-                    } rounded-xl inline-block mt-2 cursor-pointer p-1 ml-3 min-w-[38px] max-w-[38px] min-h-[38px] max-h-[38px] ${
+                    } rounded-xl inline-block mt-3 cursor-pointer p-1 ml-3 ${
+                      d.SeatType == "couple"
+                        ? "min-w-[68px] max-w-[68px]"
+                        : "min-w-[38px] max-w-[38px]"
+                    }min-w-[38px] max-w-[38px] min-h-[38px] max-h-[38px] ${
+                      d.SeatNo === null
+                        ? ""
+                        : "hover:bg-white transition-all duration-700 ease-in-out hover:text-gray-950 hover:scale-[1.02]"
+                    }`}
+                  >
+                    <div className="flex justify-center items-center">
+                      <span
+                        className={`text-sm inline-block ${
+                          d.SeatNo === null ? "opacity-0" : ""
+                        }`}
+                      >
+                        {d.RowName}
+                        {index + 1}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+          </div>
+
+          <div className="flex justify-center">
+            {data &&
+              data
+                .filter((d) => d.RowName === "I")
+                .map((d, index) => (
+                  <div
+                    key={index}
+                    className={`${
+                      d.SeatNo === null ? "opacity-0" : "border-white border-2"
+                    } rounded-xl inline-block mt-3 cursor-pointer p-1 ml-3 ${
+                      d.SeatType == "couple"
+                        ? "min-w-[68px] max-w-[68px]"
+                        : "min-w-[38px] max-w-[38px]"
+                    }min-w-[38px] max-w-[38px] min-h-[38px] max-h-[38px] ${
+                      d.SeatNo === null
+                        ? ""
+                        : "hover:bg-white transition-all duration-700 ease-in-out hover:text-gray-950 hover:scale-[1.02]"
+                    }`}
+                  >
+                    <div className="flex justify-center items-center">
+                      <span
+                        className={`text-sm inline-block ${
+                          d.SeatNo === null ? "opacity-0" : ""
+                        }`}
+                      >
+                        {d.RowName}
+                        {index + 1}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+          </div>
+
+          <div className="flex justify-center">
+            {data &&
+              data
+                .filter((d) => d.RowName === "J")
+                .map((d, index) => (
+                  <div
+                    key={index}
+                    className={`${
+                      d.SeatNo === null ? "opacity-0" : "border-white border-2"
+                    } rounded-xl inline-block mt-3 cursor-pointer p-1 ml-3 ${
+                      d.SeatType == "couple"
+                        ? "min-w-[68px] max-w-[68px]"
+                        : "min-w-[38px] max-w-[38px]"
+                    }min-w-[38px] max-w-[38px] min-h-[38px] max-h-[38px] ${
+                      d.SeatNo === null
+                        ? ""
+                        : "hover:bg-white transition-all duration-700 ease-in-out hover:text-gray-950 hover:scale-[1.02]"
+                    }`}
+                  >
+                    <div className="flex justify-center items-center">
+                      <span
+                        className={`text-sm inline-block ${
+                          d.SeatNo === null ? "opacity-0" : ""
+                        }`}
+                      >
+                        {d.RowName}
+                        {index + 1}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+          </div>
+
+          <div className="flex justify-center">
+            {data &&
+              data
+                .filter((d) => d.RowName === "K")
+                .map((d, index) => (
+                  <div
+                    key={index}
+                    className={`${
+                      d.SeatNo === null ? "opacity-0" : "border-white border-2"
+                    } rounded-xl inline-block mt-3 cursor-pointer p-1 ml-3 ${
+                      d.SeatType == "couple"
+                        ? "min-w-[68px] max-w-[68px]"
+                        : "min-w-[38px] max-w-[38px]"
+                    }min-w-[38px] max-w-[38px] min-h-[38px] max-h-[38px] ${
                       d.SeatNo === null
                         ? ""
                         : "hover:bg-white transition-all duration-700 ease-in-out hover:text-gray-950 hover:scale-[1.02]"
@@ -271,6 +387,7 @@ const SeatPage = () => {
                 ))}
           </div>
         </div>
+        <SeatPrice />
       </div>
     </div>
   );

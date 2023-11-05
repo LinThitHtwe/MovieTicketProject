@@ -111,7 +111,7 @@ const MovieDetails = () => {
               </p>
             </div>
             <Link
-              to="/movie/cinemas"
+              to={`/movie/cinemas/${id}`}
               className="bg-gradient-to-r from-cyan-600 to-blue-600 w-fit p-3 rounded-md absolute right-10 bottom-5 shadow-custom shadow-blue-500 hover:scale-[1.02] transition-all duration-300 ease-in-out"
             >
               Book Movie

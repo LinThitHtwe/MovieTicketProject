@@ -28,7 +28,7 @@ function App() {
           element: <MovieDetails />,
         },
         {
-          path: "/movie/cinemas",
+          path: "/movie/cinemas/:id",
           element: <CinemaLists />,
         },
       ],
@@ -38,7 +38,7 @@ function App() {
       element: <Layout />,
       children: [
         { path: "/", element: <Home /> },
-        { path: "/seats", element: <SeatPage /> },
+        { path: "/seats/:id/:roomId", element: <SeatPage /> },
       ],
     },
   ]);
