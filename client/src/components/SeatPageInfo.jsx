@@ -23,7 +23,7 @@ export default function SeatPageInfo({ movieId, roomId }) {
             src="https://media.istockphoto.com/id/1213550611/photo/spaceman-in-the-surf.jpg?s=612x612&w=0&k=20&c=GP0HIuD4wXBdMXk-Oa8Fc9Z8J0BazUZ0l7s7ps69ajI="
           />
           <p className="text-center p-4 ">{data[0].MovieTitle}</p>
-          <p className="text-center p-4 ">{String(cinemaInfo)}</p>
+          <p className="text-center p-4 ">{String(roomId)}</p>
           <p className="text-center p-4 ">{data[0].MovieTitle}</p>
         </div>
       )}
