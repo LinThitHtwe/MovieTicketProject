@@ -5,13 +5,12 @@ export default function SeatPriceTable({ existingSeats, selectSeat, roomId }) {
   const fetchUrl = `/Tbl_SeatPrice?RoomId=${roomId}`;
   const queryKey = ["seat-price", roomId];
   const { data } = UseFetchData(queryKey, fetchUrl);
-  console.log(data.find((priceData) => priceData.RowName == "A"));
   return (
     <>
       {data && (
-        <table className="w-full table-auto">
+        <table className="w-full table-auto ">
           <thead>
-            <tr className=" border-white border-2 ">
+            <tr className="  border-slate-600 border-2 rounded-2xl">
               <th className="font-medium p-4">Seat No</th>
               <th className="font-medium p-4">Seat Price</th>
               <th className="font-medium p-4">Action</th>
@@ -19,16 +18,15 @@ export default function SeatPriceTable({ existingSeats, selectSeat, roomId }) {
           </thead>
           <tbody>
             {existingSeats.map((d) => (
-              <tr className="text-center border-white border-2 hover:bg-gray-900">
+              <tr className="text-center border-l-gray-800 border-r-gray-800 border-gray-900 border-t-2 border-r-2 border-l-2 bg-gray-800 hover:bg-gray-700">
                 <td className="p-2">
                   {d.RowName}
                   {d.SeatNo}
                 </td>
                 <td className="p-2">
-                  {
+                  {data &&
                     data.find((priceData) => priceData.RowName == d.RowName)
-                      .SeatPrice
-                  }
+                      .SeatPrice}
                 </td>
                 <td className="p-2">
                   <i

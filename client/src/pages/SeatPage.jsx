@@ -49,7 +49,7 @@ const SeatPage = () => {
 
   return (
     <div className="bg-gradient-to-r from-gray-950 to-gray-900 text-white min-h-screen max-h-full">
-      <div className="flex gap-2 relative min-h-screen max-h-full">
+      <div className="flex gap-2 relative min-h-screen max-h-full justify-center">
         <Link to={`/movie/cinemas/${id}`}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -66,12 +66,14 @@ const SeatPage = () => {
             />
           </svg>
         </Link>
+        {/* 
         <div className="w-[10%] p-4 min-h-screen max-h-full">
           <SeatPageInfo movieId={id} roomId={roomId} />
-        </div>
-        <div className="w-full  min-h-screen max-h-full ml-5">
+        </div> */}
+        <div className="w-full  min-h-screen max-h-full mx-auto ">
           <SeatNavbar />
-          <div className="p-4 mt-10 ml-10 w-fit h-auto border-white border-2 rounded-xl">
+          <div className="p-4 mt-10  w-full h-auto  rounded-xl">
+            <div className="bg-white h-4 p-14 mb-6 w-[60%] ml-36 translate-x-32 rounded-md shadow-slate-300  shadow-lg"></div>
             <Seat data={data} selectSeat={selectSeat} roomId={roomId} />
           </div>
           <SeatPrice roomId={roomId} selectSeat={selectSeat} />
