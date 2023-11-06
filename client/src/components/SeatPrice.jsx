@@ -9,6 +9,7 @@ export default function SeatPrice({ roomId, selectSeat }) {
       {existingSeats.length > 0 && (
         <div className="p-10 h-auto w-[95%]">
           <SeatPriceTable
+            roomId={roomId}
             existingSeats={existingSeats}
             selectSeat={selectSeat}
           />
