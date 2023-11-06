@@ -14,11 +14,10 @@ const SeatPage = () => {
   );
 
   const [selectSeatState, setSelectSeatState] = useState([]);
+  const existingSeats =
+    JSON.parse(localStorage.getItem(`selectedSeats${roomId}`)) || [];
 
   const selectSeat = (data) => {
-    const existingSeats =
-      JSON.parse(localStorage.getItem(`selectedSeats${roomId}`)) || [];
-
     const indexToRemove = existingSeats.findIndex(
       (seat) => seat.SeatId === data.SeatId
     );
@@ -57,7 +56,7 @@ const SeatPage = () => {
             viewBox="0 0 24 24"
             stroke-width="1.5"
             stroke="currentColor"
-            class="w-8 h-8 absolute left-10 top-6 hover:w-10 hover:h-10 transition-all duration-300 ease-in-out"
+            class="w-8 h-8  absolute left-10 top-6 hover:w-10 hover:h-10 transition-all duration-300 ease-in-out"
           >
             <path
               stroke-linecap="round"
@@ -73,11 +72,20 @@ const SeatPage = () => {
         <div className="w-full  min-h-screen max-h-full mx-auto ">
           <SeatNavbar />
           <div className="p-4 mt-10  w-full h-auto  rounded-xl">
-            <div className="bg-white h-4 p-14 mb-6 w-[60%] ml-36 translate-x-32 rounded-md shadow-slate-300  shadow-lg"></div>
+            <div className="bg-white hover:animate-pulse h-4 p-14 mb-6 w-[60%] ml-36 translate-x-32 rounded-md shadow-slate-300  shadow-lg"></div>
             <Seat data={data} selectSeat={selectSeat} roomId={roomId} />
           </div>
-          <SeatPrice roomId={roomId} selectSeat={selectSeat} />
+          {/* <SeatPrice roomId={roomId} selectSeat={selectSeat} /> */}
         </div>
+        {existingSeats.length !== 0 && (
+          <div className="absolute w-16 h-16 flex justify-center   shadow-md shadow-slate-500 items-center rounded-full text-center right-16 bottom-8 bg-white text-gray-900 transition-opacity duration-700 ease-in-out">
+            <i className="fa-solid fa-ticket text-3xl relative ">
+              <span className="bg-red-600 animate-pulse absolute -top-6 -right-3 text-sm w-6 h-6 rounded-full text-white text-center font-medium">
+                {existingSeats.length}
+              </span>
+            </i>
+          </div>
+        )}
       </div>
     </div>
   );

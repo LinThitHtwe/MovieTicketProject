@@ -186,6 +186,13 @@ const Home = () => {
                 <span className=" mb-1 mr-1 inline-block">LinThit27</span>
               </div>
             </a>
+
+            <span class="relative flex h-3 w-3">
+              <span class="animate absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+            </span>
+
+            <div className="animate-ping">I am spinning (default)</div>
           </div>
         </div>
       </div>

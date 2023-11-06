@@ -17,15 +17,15 @@ export default function Seat({ data, selectSeat, roomId }) {
     ${
       d.SeatNo === null
         ? "opacity-0 cursor-default"
-        : "border-white border-2 cursor-pointer"
+        : "border-white border-2 cursor-pointer "
     }}
-    rounded-xl inline-block p-1 ml-3 min-w-[38px] max-w-[38px] min-h-[38px] max-h-[38px]  transition-all duration-300 ease-in-out hover:text-gray-950 hover:scale-[1.02] hover:-translate-y-1
+    rounded-xl  inline-block p-1 ml-3 min-w-[38px] max-w-[38px] min-h-[38px] max-h-[38px]  transition-all duration-300 ease-in-out hover:text-gray-950 hover:scale-[1.02] hover:-translate-y-1
     ${
       d.SeatNo === null
         ? ""
         : existingSeats.some((seat) => seat.SeatId === d.SeatId)
-        ? "bg-yellow-500 text-gray-950 hover:bg-yellow-400 hover:border-yellow-400 border-yellow-500"
-        : "hover:bg-white"
+        ? "bg-yellow-500 text-gray-950 hover:bg-yellow-400 hover:border-yellow-400 border-yellow-500 hover:animate-pulse"
+        : "hover:bg-white hover:animate-pulse"
     }`}
                 onClick={() => selectSeat(d)}
               >

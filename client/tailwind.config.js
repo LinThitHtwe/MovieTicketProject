@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
@@ -13,9 +14,9 @@ export default {
         },
       },
     },
-    animation: {
-      "skeleton-pulse": "skeleton-pulse 1.5s infinite",
-    },
+    // animation: {
+    //   "spin-slow": "spin 3s linear infinite",
+    // },
     extend: {
       backgroundColor: {
         skeleton:
