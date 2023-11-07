@@ -77,17 +77,17 @@ const SeatPage = () => {
           </div>
         </div>
         {existingSeats.length !== 0 && (
-          <div className="absolute cursor-pointer w-20 h-10 rounded-lg flex justify-center  shadow-md shadow-slate-500 items-center text-center opacity-80 right-16 bottom-8 bg-white hover:scale-105 hover:opacity-100 text-gray-900 transition-all duration-100 ease-in-out">
+          <Link
+            to={`/proceed-ticket/${id}/${roomId}`}
+            className="absolute cursor-pointer w-20 h-10 rounded-lg flex justify-center  shadow-md shadow-slate-500 items-center text-center opacity-80 right-16 bottom-8 bg-white hover:scale-105 hover:opacity-100 text-gray-900 transition-all duration-100 ease-in-out"
+          >
             <span
               className=" text-sm relative "
               onClick={() => setIsModalOpen(!isModalOpen)}
             >
               Proceed
-              <span className="bg-red-500  animate-pulse absolute -top-6 -right-5 text-sm w-6 h-6 rounded-full text-white text-center font-medium">
-                {existingSeats.length}
-              </span>
             </span>
-          </div>
+          </Link>
         )}
       </div>
     </div>
