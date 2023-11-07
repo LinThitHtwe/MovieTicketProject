@@ -6,6 +6,8 @@ import UseFetchData from "../hooks/useFetchData";
 import SeatPrice from "../components/SeatPrice";
 import Seat from "../components/Seat";
 import SeatPageInfo from "../components/SeatPageInfo";
+import TotalSeatModal from "../../modals/TotalSeatModal";
+import SeatPriceTable from "../components/SeatPriceTable";
 const SeatPage = () => {
   const { id, roomId } = useParams();
   const { data } = UseFetchData(
@@ -14,6 +16,7 @@ const SeatPage = () => {
   );
 
   const [selectSeatState, setSelectSeatState] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const existingSeats =
     JSON.parse(localStorage.getItem(`selectedSeats${roomId}`)) || [];
 
@@ -56,7 +59,7 @@ const SeatPage = () => {
             viewBox="0 0 24 24"
             stroke-width="1.5"
             stroke="currentColor"
-            class="w-8 h-8  absolute left-10 top-6 hover:w-10 hover:h-10 transition-all duration-300 ease-in-out"
+            class="w-8 h-8  fixed left-10 top-6 hover:w-10 hover:h-10 transition-all duration-300 ease-in-out"
           >
             <path
               stroke-linecap="round"
@@ -65,27 +68,29 @@ const SeatPage = () => {
             />
           </svg>
         </Link>
-        {/* 
-        <div className="w-[10%] p-4 min-h-screen max-h-full">
-          <SeatPageInfo movieId={id} roomId={roomId} />
-        </div> */}
+
         <div className="w-full  min-h-screen max-h-full mx-auto ">
-          <SeatNavbar />
+          <SeatNavbar existingSeats={existingSeats} roomId={roomId} />
           <div className="p-4 mt-10  w-full h-auto  rounded-xl">
-            <div className="bg-white hover:animate-pulse h-4 p-14 mb-6 w-[60%] ml-36 translate-x-32 rounded-md shadow-slate-300  shadow-lg"></div>
+            <div className="bg-white h-4 p-4 mb-6 w-[60%] ml-36 translate-x-32 rounded-md shadow-slate-300  shadow-lg"></div>
             <Seat data={data} selectSeat={selectSeat} roomId={roomId} />
           </div>
-          {/* <SeatPrice roomId={roomId} selectSeat={selectSeat} /> */}
         </div>
         {existingSeats.length !== 0 && (
-          <div className="absolute w-16 h-16 flex justify-center   shadow-md shadow-slate-500 items-center rounded-full text-center right-16 bottom-8 bg-white text-gray-900 transition-opacity duration-700 ease-in-out">
-            <i className="fa-solid fa-ticket text-3xl relative ">
-              <span className="bg-red-600 animate-pulse absolute -top-6 -right-3 text-sm w-6 h-6 rounded-full text-white text-center font-medium">
+          <div className="absolute cursor-pointer w-20 h-10 rounded-lg flex justify-center  shadow-md shadow-slate-500 items-center text-center opacity-80 right-16 bottom-8 bg-white hover:scale-105 hover:opacity-100 text-gray-900 transition-all duration-100 ease-in-out">
+            <span
+              className=" text-sm relative "
+              onClick={() => setIsModalOpen(!isModalOpen)}
+            >
+              Proceed
+              <span className="bg-red-500  animate-pulse absolute -top-6 -right-5 text-sm w-6 h-6 rounded-full text-white text-center font-medium">
                 {existingSeats.length}
               </span>
-            </i>
+            </span>
           </div>
         )}
+
+        {isModalOpen && <TotalSeatModal />}
       </div>
     </div>
   );
