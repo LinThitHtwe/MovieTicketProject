@@ -6,7 +6,7 @@ import UseFetchData from "../hooks/useFetchData";
 import SeatPrice from "../components/SeatPrice";
 import Seat from "../components/Seat";
 import SeatPageInfo from "../components/SeatPageInfo";
-import TotalSeatModal from "../../modals/TotalSeatModal";
+import TotalSeatModal from "../modals/TotalSeatModal";
 import SeatPriceTable from "../components/SeatPriceTable";
 const SeatPage = () => {
   const { id, roomId } = useParams();
