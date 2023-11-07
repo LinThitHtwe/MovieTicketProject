@@ -19,17 +19,38 @@ export default function TicketProceedPage() {
     movieFetchUrl
   );
 
-  const existingSeats = JSON.parse(localStorage.getItem(`selectedSeats`)) || [];
+  const existingSeats =
+    JSON.parse(localStorage.getItem(`selectedSeats${roomId}`)) || [];
 
-  const buyTicket = (data) => {
-    const purchasedTicket =
-      JSON.parse(localStorage.getItem(`purchasedTicket`)) || [];
+  const buyTicket = (d) => {
+    const seats = existingSeats.map((es) => es.RowName + es.SeatNo).join(", ");
+    const totalAmount =
+      existingSeats
+        .reduce((total, es) => {
+          const seatPriceData = seatPrice.find(
+            (priceData) => priceData.RowName === es.RowName
+          );
+          if (seatPriceData) {
+            total += seatPriceData.SeatPrice;
+          }
+          return total;
+        }, 0)
+        .toLocaleString() + " Ks";
 
-    purchasedTicket.push(data);
-    localStorage.setItem(
-      `purchasedTicket${roomId}`,
-      JSON.stringify(purchasedTicket)
-    );
+    console.log(data);
+    const ticketData = {
+      totalSeats: existingSeats.length,
+      seats: seats,
+      totalAmount: totalAmount,
+      movieTitle: data[0].MovieTitle,
+      purchaseDate: new Date(),
+    };
+
+    const purchasedTickets =
+      JSON.parse(localStorage.getItem(`purchasedTickets`)) || [];
+
+    purchasedTickets.push(ticketData);
+    localStorage.setItem(`purchasedTickets`, JSON.stringify(purchasedTickets));
 
     localStorage.setItem(`selectedSeats${roomId}`, JSON.stringify([]));
   };

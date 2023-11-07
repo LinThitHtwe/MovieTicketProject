@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function TicketCard() {
+export default function TicketCard({ purchasedTicket }) {
   return (
     <>
       <div
