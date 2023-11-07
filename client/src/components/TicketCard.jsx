@@ -10,13 +10,13 @@ export default function TicketCard({ purchasedTicket }) {
           cursor-pointer flex flex-col gap-4 pl-3 pt-3 text-white group"
       >
         <span className="text-center text-2xl">Ticket</span>
-        <span>Movie Title</span>
+        <span>Movie Title : {purchasedTicket.movieTitle}</span>
         <span>Cinema Name</span>
         <span>Show Time</span>
-        <span>Show Date</span>
-        <span>Seats</span>
-        <span>Total Seat</span>
-        <span>Total Amount</span>
+        <span>Seats : {purchasedTicket.seats}</span>
+        <span>Total Seat : {purchasedTicket.totalSeats}</span>
+        <span>Total Amount : {purchasedTicket.totalAmount}</span>
+        <span>Purchased Date : {purchasedTicket.purchaseDate}</span>
       </div>
     </>
   );
