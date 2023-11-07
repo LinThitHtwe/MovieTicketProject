@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const SideNavBar = () => {
   return (
@@ -25,7 +26,7 @@ const SideNavBar = () => {
           Navbar
         </li>
         <li className="py-2 px-4 border-gray-900 border-l-2 hover:bg-gray-800 transition-all duration-500 ease-in-out cursor-pointer">
-          Navbar
+          <Link to="/movie/ticket">Ticket</Link>
         </li>
         <li className="py-2 px-4 border-gray-900 border-l-2 hover:bg-gray-800 transition-all duration-500 ease-in-out cursor-pointer">
           Navbar

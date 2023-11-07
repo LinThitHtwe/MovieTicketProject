@@ -11,6 +11,7 @@ import SeatPage from "./pages/SeatPage";
 import axios from "axios";
 import { ReactQueryDevtools } from "react-query/devtools";
 import TicketProceedPage from "./pages/TicketProceedPage";
+import PurchasedTicketPage from "./pages/PurchasedTicketPage";
 
 const queryClient = new QueryClient();
 axios.defaults.baseURL = "http://localhost:4000";
@@ -31,6 +32,10 @@ function App() {
         {
           path: "/movie/cinemas/:id",
           element: <CinemaLists />,
+        },
+        {
+          path: "/movie/ticket",
+          element: <PurchasedTicketPage />,
         },
       ],
     },
