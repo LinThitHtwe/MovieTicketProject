@@ -11,7 +11,7 @@ export default function TotalSeatRightSideBar({
   const fetchUrl = `/Tbl_SeatPrice?RoomId=${roomId}`;
   const queryKey = ["seat-price", roomId];
   const { data } = UseFetchData(queryKey, fetchUrl);
-
+  console.log(existingSeats.length);
   return (
     <>
       <div
@@ -36,7 +36,7 @@ export default function TotalSeatRightSideBar({
         <div className="flex p-2 gap-3 flex-col">
           <h2 className="text-xl  w-ful text-center">Total Selected Seat</h2>
           <ul className="p-2 w-full">
-            {existingSeats.length !== 0 &&
+            {existingSeats.length != 0 &&
               existingSeats.map((es, index) => (
                 <li
                   key={index}
@@ -51,6 +51,7 @@ export default function TotalSeatRightSideBar({
                     {data &&
                       data.find((priceData) => priceData.RowName == es.RowName)
                         .SeatPrice}
+                    Ks
                   </span>
                   <i
                     className="fa-solid fa-trash text-red-600 cursor-pointer hover:-translate-y-1 hover:scale-105 transition-all duration-300 ease-in-out"

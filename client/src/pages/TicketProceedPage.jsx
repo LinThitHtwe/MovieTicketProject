@@ -1,6 +1,39 @@
 import React from "react";
+import { useParams } from "react-router-dom";
+import UseFetchData from "../hooks/useFetchData";
 
 export default function TicketProceedPage() {
+  const { id: movieId, roomId } = useParams();
+  const movieQueryKey = ["movie", movieId];
+  const movieFetchUrl = `/Tbl_MovieList?MovieId=${movieId}`;
+
+  const seatPricefetchUrl = `/Tbl_SeatPrice?RoomId=${roomId}`;
+  const seatPricequeryKey = ["seat-price", roomId];
+  const { data: seatPrice } = UseFetchData(
+    seatPricequeryKey,
+    seatPricefetchUrl
+  );
+
+  const { isLoading, isError, error, data } = UseFetchData(
+    movieQueryKey,
+    movieFetchUrl
+  );
+
+  const existingSeats = JSON.parse(localStorage.getItem(`selectedSeats`)) || [];
+
+  const buyTicket = (data) => {
+    const purchasedTicket =
+      JSON.parse(localStorage.getItem(`purchasedTicket`)) || [];
+
+    purchasedTicket.push(data);
+    localStorage.setItem(
+      `purchasedTicket${roomId}`,
+      JSON.stringify(purchasedTicket)
+    );
+
+    localStorage.setItem(`selectedSeats${roomId}`, JSON.stringify([]));
+  };
+
   return (
     <div className="bg-gradient-to-r from-gray-950 to-gray-900 text-white min-h-screen max-h-full">
       <div className="flex justify-center content-center items-center h-screen w-screen overflow-hidden ">
@@ -18,28 +51,53 @@ export default function TicketProceedPage() {
             </span>
             <div className="mt-10 flex flex-col flex-wrap gap-6 max-w-[100%] min-w-[100%]">
               <span>
-                <i className="fa-solid fa-film mr-3"></i>Movie Title
+                <i className="fa-solid fa-film mr-3"></i>
+                {data && data[0].MovieTitle}
               </span>
-              <div className=" flex w-full items-center gap-2">
+              <div className="flex w-full items-center gap-2">
                 <i className="fa-solid fa-ticket"></i>
-                <span className="">
-                  Seat : A11, A13, A11, A13, A11, A13, A11, A13, A11, A13, A11,
-                  A13,
+                <span>
+                  {existingSeats.length !== 0 &&
+                    existingSeats.map((es, index) => (
+                      <span key={index}>
+                        {es.RowName} {es.SeatNo}
+                        {index < existingSeats.length - 1 ? ", " : ""}
+                      </span>
+                    ))}
                 </span>
               </div>
-              <span>Total Seats : 10</span>
-              <span>Total Price : 10000Ks</span>
+
+              <span>Total Seats : {existingSeats.length}</span>
+              {data && (
+                <>
+                  <span>
+                    Total Amount :{" "}
+                    {existingSeats.length === 0
+                      ? "0 Ks"
+                      : existingSeats
+                          .reduce((total, es) => {
+                            const seatPriceData = seatPrice.find(
+                              (priceData) => priceData.RowName === es.RowName
+                            );
+                            if (seatPriceData) {
+                              total += seatPriceData.SeatPrice;
+                            }
+                            return total;
+                          }, 0)
+                          .toLocaleString() + " Ks"}
+                  </span>
+                </>
+              )}
             </div>
             <button
               className="absolute bottom-8 right-16 bg-white text-gray-950 p-3 rounded-xl shadow-md shadow-slate-500
             hover:-translate-y-1 transition-all duration-500 ease-in-out cursor-pointer opacity-80 hover:opacity-100 hover:scale-105"
+              onClick={() => buyTicket(existingSeats)}
             >
               Buy Ticket
             </button>
           </div>
         </div>
-        {/* <div className="w-full bg-yellow-500">HIHI</div> */}
-        {/* </div> */}
       </div>
     </div>
   );
