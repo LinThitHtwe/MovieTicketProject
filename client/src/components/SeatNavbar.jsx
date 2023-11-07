@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import UseFetchData from "../hooks/useFetchData";
-import TotalSeatModal from "../modals/TotalSeatModal";
+import TotalSeatRightSideBar from "../modals/TotalSeatRightSideBar";
 
-const SeatNavbar = ({ existingSeats, roomId }) => {
+const SeatNavbar = ({ existingSeats, roomId, selectSeat }) => {
   const fetchUrl = `/Tbl_SeatPrice?RoomId=${roomId}`;
   const queryKey = ["seat-price", roomId];
   const { data } = UseFetchData(queryKey, fetchUrl);
@@ -88,9 +88,11 @@ const SeatNavbar = ({ existingSeats, roomId }) => {
         </div>
       </div>
 
-      <TotalSeatModal
+      <TotalSeatRightSideBar
+        existingSeats={existingSeats}
         isModalOpen={isModalOpen}
         setIsModalOpen={setIsModalOpen}
+        selectSeat={selectSeat}
       />
     </>
   );

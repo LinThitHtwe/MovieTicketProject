@@ -3,11 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import SeatNavbar from "../components/SeatNavbar";
 
 import UseFetchData from "../hooks/useFetchData";
-import SeatPrice from "../components/SeatPrice";
 import Seat from "../components/Seat";
-import SeatPageInfo from "../components/SeatPageInfo";
-import TotalSeatModal from "../modals/TotalSeatModal";
-import SeatPriceTable from "../components/SeatPriceTable";
 const SeatPage = () => {
   const { id, roomId } = useParams();
   const { data } = UseFetchData(
@@ -70,7 +66,11 @@ const SeatPage = () => {
         </Link>
 
         <div className="w-full  min-h-screen max-h-full mx-auto ">
-          <SeatNavbar existingSeats={existingSeats} roomId={roomId} />
+          <SeatNavbar
+            existingSeats={existingSeats}
+            roomId={roomId}
+            selectSeat={selectSeat}
+          />
           <div className="p-4 mt-10  w-full h-auto  rounded-xl">
             <div className="bg-white h-4 p-4 mb-6 w-[60%] ml-36 translate-x-32 rounded-md shadow-slate-300  shadow-lg"></div>
             <Seat data={data} selectSeat={selectSeat} roomId={roomId} />
@@ -89,8 +89,6 @@ const SeatPage = () => {
             </span>
           </div>
         )}
-
-        {isModalOpen && <TotalSeatModal />}
       </div>
     </div>
   );

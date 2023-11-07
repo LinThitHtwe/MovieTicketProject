@@ -1,8 +1,12 @@
 import React from "react";
 
-export default function TotalSeatModal({ isModalOpen, setIsModalOpen }) {
-  const isSidebarOpen = false;
-  console.log("hihihi");
+export default function TotalSeatRightSideBar({
+  isModalOpen,
+  setIsModalOpen,
+  existingSeats,
+  selectSeat,
+}) {
+  console.log(existingSeats.length);
   return (
     <>
       <div
@@ -26,17 +30,20 @@ export default function TotalSeatModal({ isModalOpen, setIsModalOpen }) {
         <div className="flex p-2 gap-3 flex-col">
           <h2 className="text-xl  w-ful text-center">Total Selected Seat</h2>
           <ul className="p-2 w-full">
-            {[1, 2, 3, 4].map((index) => (
-              <li
-                key={index}
-                className="flex justify-around gap-10 border-white mb-3 p-2 
-                items-center rounded-md bg-white shadow-slate-600 shadow-lg text-gray-950"
-              >
-                <span className="">A{index}</span>
-                <span>5000</span>
-                <i className="fa-solid fa-trash text-red-600"></i>
-              </li>
-            ))}
+            {existingSeats.length !== 0 &&
+              existingSeats.map((es, index) => (
+                <li
+                  key={index}
+                  className="flex justify-around gap-10 border-white mb-3 p-2 items-center rounded-md bg-white shadow-slate-600 shadow-lg text-gray-950"
+                >
+                  <span className="">{es.RowName}</span>
+                  <span>5000</span>
+                  <i
+                    className="fa-solid fa-trash text-red-600"
+                    onClick={() => selectSeat(es)}
+                  ></i>
+                </li>
+              ))}
           </ul>
         </div>
       </div>
