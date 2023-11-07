@@ -1,18 +1,24 @@
 import React from "react";
+import UseFetchData from "../hooks/useFetchData";
 
 export default function TotalSeatRightSideBar({
   isModalOpen,
   setIsModalOpen,
   existingSeats,
   selectSeat,
+  roomId,
 }) {
-  console.log(existingSeats.length);
+  const fetchUrl = `/Tbl_SeatPrice?RoomId=${roomId}`;
+  const queryKey = ["seat-price", roomId];
+  const { data } = UseFetchData(queryKey, fetchUrl);
+
   return (
     <>
       <div
         className={`fixed z-10 min-h-screen max-h-full w-full top-0 left-0 bg-black/40  transition-all duration-500 ease-in-out ${
           isModalOpen ? "block" : "hidden"
         }`}
+        onClick={() => setIsModalOpen(!isModalOpen)}
       ></div>
       <div
         className={`fixed bg-gradient-to-r from-slate-700 to-slate-800 text-white min-w-[26vw] z-20 top-0 flex flex-col gap-5 right-0 h-screen w-[25%] transform  transition-all   duration-700 ease-in-out ${
@@ -34,12 +40,20 @@ export default function TotalSeatRightSideBar({
               existingSeats.map((es, index) => (
                 <li
                   key={index}
-                  className="flex justify-around gap-10 border-white mb-3 p-2 items-center rounded-md bg-white shadow-slate-600 shadow-lg text-gray-950"
+                  className="flex justify-around gap-10 hover:bg-gray-300 mb-3 p-2 items-center rounded-md bg-white shadow-slate-600 shadow-lg text-gray-950"
                 >
-                  <span className="">{es.RowName}</span>
-                  <span>5000</span>
+                  <span className="">
+                    {es.RowName}
+                    {es.SeatNo}
+                  </span>
+                  <span>
+                    {" "}
+                    {data &&
+                      data.find((priceData) => priceData.RowName == es.RowName)
+                        .SeatPrice}
+                  </span>
                   <i
-                    className="fa-solid fa-trash text-red-600"
+                    className="fa-solid fa-trash text-red-600 cursor-pointer hover:-translate-y-1 hover:scale-105 transition-all duration-300 ease-in-out"
                     onClick={() => selectSeat(es)}
                   ></i>
                 </li>

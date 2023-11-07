@@ -93,6 +93,7 @@ const SeatNavbar = ({ existingSeats, roomId, selectSeat }) => {
         isModalOpen={isModalOpen}
         setIsModalOpen={setIsModalOpen}
         selectSeat={selectSeat}
+        roomId={roomId}
       />
     </>
   );
