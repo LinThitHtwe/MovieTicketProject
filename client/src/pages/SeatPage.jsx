@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import SeatNavbar from "../components/SeatNavbar";
-
+import toast, { Toaster } from "react-hot-toast";
 import UseFetchData from "../hooks/useFetchData";
 import Seat from "../components/Seat";
 const SeatPage = () => {
@@ -35,6 +35,7 @@ const SeatPage = () => {
         `selectedSeats${roomId}`,
         JSON.stringify(updatedSeats)
       );
+
       return;
     }
     setSelectSeatState((prevSelectSeatState) => [...prevSelectSeatState, data]);

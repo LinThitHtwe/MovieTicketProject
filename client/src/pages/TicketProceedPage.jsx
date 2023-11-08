@@ -1,9 +1,11 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import UseFetchData from "../hooks/useFetchData";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function TicketProceedPage() {
   const { id: movieId, roomId } = useParams();
+  const navigate = useNavigate();
   const movieQueryKey = ["movie", movieId];
   const movieFetchUrl = `/Tbl_MovieList?MovieId=${movieId}`;
 
@@ -53,6 +55,9 @@ export default function TicketProceedPage() {
     localStorage.setItem(`purchasedTickets`, JSON.stringify(purchasedTickets));
 
     localStorage.setItem(`selectedSeats${roomId}`, JSON.stringify([]));
+
+    navigate("/movie/ticket");
+    toast.success("Successful!");
   };
 
   return (

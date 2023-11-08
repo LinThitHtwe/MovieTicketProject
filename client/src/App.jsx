@@ -12,6 +12,7 @@ import axios from "axios";
 import { ReactQueryDevtools } from "react-query/devtools";
 import TicketProceedPage from "./pages/TicketProceedPage";
 import PurchasedTicketPage from "./pages/PurchasedTicketPage";
+import toast, { Toaster } from "react-hot-toast";
 
 const queryClient = new QueryClient();
 axios.defaults.baseURL = "http://localhost:4000";
@@ -55,6 +56,7 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <RouterProvider router={router} />
         <ReactQueryDevtools />
+        <Toaster position="top-center" reverseOrder={false} />
       </QueryClientProvider>
     </>
   );
