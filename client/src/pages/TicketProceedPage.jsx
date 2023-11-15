@@ -39,7 +39,6 @@ export default function TicketProceedPage() {
         }, 0)
         .toLocaleString() + " Ks";
 
-    console.log(data);
     const ticketData = {
       totalSeats: existingSeats.length,
       seats: seats,
@@ -53,7 +52,10 @@ export default function TicketProceedPage() {
 
     purchasedTickets.push(ticketData);
     localStorage.setItem(`purchasedTickets`, JSON.stringify(purchasedTickets));
-
+    localStorage.setItem(
+      `purchasedSeats${roomId}${movieId}`,
+      JSON.stringify(existingSeats)
+    );
     localStorage.setItem(`selectedSeats${roomId}`, JSON.stringify([]));
 
     navigate("/movie/ticket");

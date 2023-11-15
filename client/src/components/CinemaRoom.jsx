@@ -5,7 +5,7 @@ import CinemaRoomSkeleton from "../skeletons/CinemaRoomSkeleton";
 
 const CinemaRoom = ({ cinemaId }) => {
   const { id } = useParams();
-  const queryKey = ["cinema-room", cinemaId];
+  const queryKey = ["cinema-rooms", cinemaId];
   const fetchUrl = `/Tbl_CinemaRoom?CinemaId=${cinemaId}`;
   const { isLoading, data } = UseFetchData(queryKey, fetchUrl);
   return (

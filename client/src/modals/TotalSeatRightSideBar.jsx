@@ -21,7 +21,7 @@ export default function TotalSeatRightSideBar({
         onClick={() => setIsModalOpen(!isModalOpen)}
       ></div>
       <div
-        className={`fixed bg-gradient-to-r from-slate-700 to-slate-800 text-white min-w-[26vw] z-20 top-0 flex flex-col gap-5 right-0 h-screen w-[25%] transform  transition-all   duration-700 ease-in-out ${
+        className={`fixed bg-gradient-to-r from-slate-700 to-slate-800 text-white min-w-[20vw] z-20 top-0 flex flex-col gap-5 right-0 h-screen w-[25%] transform  transition-all   duration-700 ease-in-out ${
           isModalOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
@@ -34,7 +34,7 @@ export default function TotalSeatRightSideBar({
           </button>
         </div>
         <div className="flex p-2 gap-3 flex-col">
-          <h2 className="text-xl  w-ful text-center">Total Selected Seat</h2>
+          <h2 className="text-xl  w-full text-center">Total Selected Seat</h2>
           <ul className="p-2 w-full">
             {existingSeats.length != 0 &&
               existingSeats.map((es, index) => (

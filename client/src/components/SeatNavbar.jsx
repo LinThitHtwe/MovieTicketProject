@@ -2,11 +2,26 @@ import React, { useState } from "react";
 import UseFetchData from "../hooks/useFetchData";
 import TotalSeatRightSideBar from "../modals/TotalSeatRightSideBar";
 
-const SeatNavbar = ({ existingSeats, roomId, selectSeat }) => {
-  const fetchUrl = `/Tbl_SeatPrice?RoomId=${roomId}`;
-  const queryKey = ["seat-price", roomId];
-  const { data } = UseFetchData(queryKey, fetchUrl);
+const SeatNavbar = ({ existingSeats, roomId, selectSeat, movieId }) => {
+  const seatPriceFetchUrl = `/Tbl_SeatPrice?RoomId=${roomId}`;
+  const seatPriceQueryKey = ["seat-price", roomId];
+  const { data: seatPriceData } = UseFetchData(
+    seatPriceQueryKey,
+    seatPriceFetchUrl
+  );
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const movieQueryKey = ["movie", movieId];
+  const movieFetchUrl = `/Tbl_MovieList?MovieId=${movieId}`;
+  const { data: movieData } = UseFetchData(movieQueryKey, movieFetchUrl);
+
+  const cinemaQueryKey = ["cinemas"];
+  const cinemaFetchUrl = `/Tbl_CinemaList`;
+  const { data: cinemasData } = UseFetchData(cinemaQueryKey, cinemaFetchUrl);
+
+  const roomQueryKey = ["cinema-room", roomId];
+  const roomFetchUrl = `Tbl_CinemaRoom?RoomId=${roomId}`;
+  const { data: roomData } = UseFetchData(roomQueryKey, roomFetchUrl);
 
   return (
     <>
@@ -18,9 +33,15 @@ const SeatNavbar = ({ existingSeats, roomId, selectSeat }) => {
             src="https://media.istockphoto.com/id/1213550611/photo/spaceman-in-the-surf.jpg?s=612x612&w=0&k=20&c=GP0HIuD4wXBdMXk-Oa8Fc9Z8J0BazUZ0l7s7ps69ajI="
           />
           <div className="w-full flex flex-col gap-3 p-4">
-            <span>Movie Title</span>
-            <span>Blah Blah Cinema</span>
-            <span>Blah Blah Room</span>
+            <span>{movieData && movieData[0].MovieTitle}</span>
+            <span>
+              {roomData && cinemasData
+                ? cinemasData
+                    .filter((d) => d.CinemaId === roomData[0].CinemaId)
+                    .map((filteredCinema) => filteredCinema.CinemaName)
+                : ""}
+            </span>
+            <span>{roomData && roomData[0].RoomName}</span>
             <span>Action/ Romance</span>
           </div>
         </div>
@@ -48,7 +69,7 @@ const SeatNavbar = ({ existingSeats, roomId, selectSeat }) => {
             </span>
           </div>
           <div className="border-gray-900 border-b-2 p-2 flex gap-10 ">
-            {data && (
+            {seatPriceData && (
               <>
                 <span>
                   Total :{" "}
@@ -56,11 +77,11 @@ const SeatNavbar = ({ existingSeats, roomId, selectSeat }) => {
                     ? "0 Ks"
                     : existingSeats
                         .reduce((total, es) => {
-                          const seatPriceData = data.find(
+                          const seatPrice = seatPriceData.find(
                             (priceData) => priceData.RowName === es.RowName
                           );
-                          if (seatPriceData) {
-                            total += seatPriceData.SeatPrice;
+                          if (seatPrice) {
+                            total += seatPrice.SeatPrice;
                           }
                           return total;
                         }, 0)

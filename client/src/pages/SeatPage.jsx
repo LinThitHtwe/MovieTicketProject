@@ -71,10 +71,16 @@ const SeatPage = () => {
             existingSeats={existingSeats}
             roomId={roomId}
             selectSeat={selectSeat}
+            movieId={id}
           />
           <div className="p-4 mt-10  w-full h-auto  rounded-xl">
             <div className="bg-white h-4 p-4 mb-6 w-[60%] ml-36 translate-x-32 rounded-md shadow-slate-300  shadow-lg"></div>
-            <Seat data={data} selectSeat={selectSeat} roomId={roomId} />
+            <Seat
+              data={data}
+              selectSeat={selectSeat}
+              roomId={roomId}
+              movieId={id}
+            />
           </div>
         </div>
         {existingSeats.length !== 0 && (

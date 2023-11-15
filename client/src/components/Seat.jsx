@@ -1,8 +1,11 @@
 import React from "react";
 
-export default function Seat({ data, selectSeat, roomId }) {
+export default function Seat({ data, selectSeat, roomId, movieId }) {
   const existingSeats =
     JSON.parse(localStorage.getItem(`selectedSeats${roomId}`)) || [];
+
+  const purchasedSeats =
+    JSON.parse(localStorage.getItem(`purchasedSeats${roomId}${movieId}`)) || [];
 
   return (
     <>
@@ -18,16 +21,28 @@ export default function Seat({ data, selectSeat, roomId }) {
       d.SeatNo === null
         ? "opacity-0 cursor-default"
         : "border-white border-2 cursor-pointer "
-    }}
-    rounded-xl  inline-block p-1 ml-3 mt-8 min-w-[38px] max-w-[38px] min-h-[38px] max-h-[38px]  transition-all duration-300 ease-in-out hover:text-gray-950 hover:scale-[1.02] hover:-translate-y-1
-    ${
+    }
+    rounded-xl inline-block p-1 ml-3 mt-8 min-w-[38px] max-w-[38px] min-h-[38px] max-h-[38px] transition-all duration-300 ease-in-out ${
       d.SeatNo === null
         ? ""
         : existingSeats.some((seat) => seat.SeatId === d.SeatId)
         ? "bg-yellow-500 text-gray-950 hover:bg-yellow-400 hover:border-yellow-400 border-yellow-500"
-        : "hover:bg-white hover:animate-pulse"
-    }`}
-                onClick={d.SeatNo !== null ? () => selectSeat(d) : null}
+        : "hover:bg-white hover:animate-pulse hover:text-gray-950 hover:-translate-y-1"
+    } ${
+                  purchasedSeats.some(
+                    (purchasedSeat) => purchasedSeat.SeatId === d.SeatId
+                  )
+                    ? "bg-red-700 border-red-700 border-2 cursor-not-allowed hover:bg-red-700 hover:translate-y-0 hover:text-white hover:animate-none"
+                    : ""
+                }`}
+                onClick={
+                  d.SeatNo !== null &&
+                  !purchasedSeats.some(
+                    (purchasedSeat) => purchasedSeat.SeatId === d.SeatId
+                  )
+                    ? () => selectSeat(d)
+                    : null
+                }
               >
                 <div className="flex justify-center items-center">
                   <span
@@ -53,22 +68,34 @@ export default function Seat({ data, selectSeat, roomId }) {
     ${
       d.SeatNo === null
         ? "opacity-0 cursor-default"
-        : "border-white border-2 cursor-pointer"
+        : "border-white border-2 cursor-pointer "
     }
-    rounded-xl mt-3 inline-block p-1 ml-3 min-w-[38px] max-w-[38px] min-h-[38px] max-h-[38px]  transition-all duration-300 ease-in-out hover:text-gray-950 hover:scale-[1.02] hover:-translate-y-1
-       ${
-         d.SeatNo === null
-           ? ""
-           : existingSeats.some((seat) => seat.SeatId === d.SeatId)
-           ? "bg-yellow-500 text-gray-950 hover:bg-yellow-400 hover:border-yellow-400 border-yellow-500"
-           : "hover:bg-white hover:animate-pulse"
-       }`}
-                onClick={d.SeatNo !== null ? () => selectSeat(d) : null}
+    rounded-xl inline-block p-1 ml-3 mt-3 min-w-[38px] max-w-[38px] min-h-[38px] max-h-[38px] transition-all duration-300 ease-in-out ${
+      d.SeatNo === null
+        ? ""
+        : existingSeats.some((seat) => seat.SeatId === d.SeatId)
+        ? "bg-yellow-500 text-gray-950 hover:bg-yellow-400 hover:border-yellow-400 border-yellow-500"
+        : "hover:bg-white hover:animate-pulse hover:text-gray-950 hover:-translate-y-1"
+    } ${
+                  purchasedSeats.some(
+                    (purchasedSeat) => purchasedSeat.SeatId === d.SeatId
+                  )
+                    ? "bg-red-700 border-red-700 border-2 cursor-not-allowed hover:bg-red-700 hover:translate-y-0 hover:text-white hover:animate-none"
+                    : ""
+                }`}
+                onClick={
+                  d.SeatNo !== null &&
+                  !purchasedSeats.some(
+                    (purchasedSeat) => purchasedSeat.SeatId === d.SeatId
+                  )
+                    ? () => selectSeat(d)
+                    : null
+                }
               >
                 <div className="flex justify-center items-center">
                   <span
-                    className={`text-sm inline-block ${
-                      d.SeatNo === null ? "opacity-0" : ""
+                    className={`text-sm inline-block  ${
+                      d.SeatNo === null ? "opacity-0 cursor-default" : ""
                     }`}
                   >
                     {d.RowName}
@@ -78,7 +105,6 @@ export default function Seat({ data, selectSeat, roomId }) {
               </div>
             ))}
       </div>
-
       <div className="flex justify-center">
         {data &&
           data
@@ -90,22 +116,34 @@ export default function Seat({ data, selectSeat, roomId }) {
     ${
       d.SeatNo === null
         ? "opacity-0 cursor-default"
-        : "border-white border-2 cursor-pointer"
+        : "border-white border-2 cursor-pointer "
     }
-    rounded-xl mt-3  inline-block p-1 ml-3 min-w-[38px] max-w-[38px] min-h-[38px] max-h-[38px] transition-all duration-300 ease-in-out hover:text-gray-950 hover:scale-[1.02] hover:-translate-y-1
-       ${
-         d.SeatNo === null
-           ? ""
-           : existingSeats.some((seat) => seat.SeatId === d.SeatId)
-           ? "bg-yellow-500 text-gray-950 hover:bg-yellow-400 hover:border-yellow-400 border-yellow-500"
-           : "hover:bg-white hover:animate-pulse"
-       }`}
-                onClick={d.SeatNo !== null ? () => selectSeat(d) : null}
+    rounded-xl inline-block p-1 ml-3 mt-3 min-w-[38px] max-w-[38px] min-h-[38px] max-h-[38px] transition-all duration-300 ease-in-out ${
+      d.SeatNo === null
+        ? ""
+        : existingSeats.some((seat) => seat.SeatId === d.SeatId)
+        ? "bg-yellow-500 text-gray-950 hover:bg-yellow-400 hover:border-yellow-400 border-yellow-500"
+        : "hover:bg-white hover:animate-pulse hover:text-gray-950 hover:-translate-y-1"
+    } ${
+                  purchasedSeats.some(
+                    (purchasedSeat) => purchasedSeat.SeatId === d.SeatId
+                  )
+                    ? "bg-red-700 border-red-700 border-2 cursor-not-allowed hover:bg-red-700 hover:translate-y-0 hover:text-white hover:animate-none"
+                    : ""
+                }`}
+                onClick={
+                  d.SeatNo !== null &&
+                  !purchasedSeats.some(
+                    (purchasedSeat) => purchasedSeat.SeatId === d.SeatId
+                  )
+                    ? () => selectSeat(d)
+                    : null
+                }
               >
                 <div className="flex justify-center items-center">
                   <span
-                    className={`text-sm inline-block ${
-                      d.SeatNo === null ? "opacity-0" : ""
+                    className={`text-sm inline-block  ${
+                      d.SeatNo === null ? "opacity-0 cursor-default" : ""
                     }`}
                   >
                     {d.RowName}
@@ -126,22 +164,34 @@ export default function Seat({ data, selectSeat, roomId }) {
     ${
       d.SeatNo === null
         ? "opacity-0 cursor-default"
-        : "border-white border-2 cursor-pointer"
+        : "border-white border-2 cursor-pointer "
     }
-    rounded-xl mt-3 inline-block p-1 ml-3 min-w-[38px] max-w-[38px] min-h-[38px] max-h-[38px] transition-all duration-300 ease-in-out hover:text-gray-950 hover:scale-[1.02] hover:-translate-y-1
-       ${
-         d.SeatNo === null
-           ? ""
-           : existingSeats.some((seat) => seat.SeatId === d.SeatId)
-           ? "bg-yellow-500 text-gray-950 hover:bg-yellow-400 hover:border-yellow-400 border-yellow-500"
-           : "hover:bg-white hover:animate-pulse"
-       }`}
-                onClick={d.SeatNo !== null ? () => selectSeat(d) : null}
+    rounded-xl inline-block p-1 ml-3 mt-3 min-w-[38px] max-w-[38px] min-h-[38px] max-h-[38px] transition-all duration-300 ease-in-out ${
+      d.SeatNo === null
+        ? ""
+        : existingSeats.some((seat) => seat.SeatId === d.SeatId)
+        ? "bg-yellow-500 text-gray-950 hover:bg-yellow-400 hover:border-yellow-400 border-yellow-500"
+        : "hover:bg-white hover:animate-pulse hover:text-gray-950 hover:-translate-y-1"
+    } ${
+                  purchasedSeats.some(
+                    (purchasedSeat) => purchasedSeat.SeatId === d.SeatId
+                  )
+                    ? "bg-red-700 border-red-700 border-2 cursor-not-allowed hover:bg-red-700 hover:translate-y-0 hover:text-white hover:animate-none"
+                    : ""
+                }`}
+                onClick={
+                  d.SeatNo !== null &&
+                  !purchasedSeats.some(
+                    (purchasedSeat) => purchasedSeat.SeatId === d.SeatId
+                  )
+                    ? () => selectSeat(d)
+                    : null
+                }
               >
                 <div className="flex justify-center items-center">
                   <span
-                    className={`text-sm inline-block ${
-                      d.SeatNo === null ? "opacity-0" : ""
+                    className={`text-sm inline-block  ${
+                      d.SeatNo === null ? "opacity-0 cursor-default" : ""
                     }`}
                   >
                     {d.RowName}
@@ -189,32 +239,43 @@ export default function Seat({ data, selectSeat, roomId }) {
             ))}
       </div>
 
-      <div className=" flex justify-center">
+      <div className="flex justify-center">
         {data &&
           data
             .filter((d) => d.RowName === "F")
             .map((d, index) => (
               <div
                 key={index}
-                className={`
-    ${
-      d.SeatNo === null
-        ? "opacity-0 cursor-default"
-        : "border-white border-2 cursor-pointer"
-    }
+                className={`${
+                  d.SeatNo === null
+                    ? "opacity-0 cursor-default"
+                    : "border-white border-2 cursor-pointer"
+                }
     rounded-xl mt-3 inline-block p-1 ml-3 ${
       d.SeatType == "couple"
         ? "min-w-[68px] max-w-[68px]"
         : "min-w-[38px] max-w-[38px]"
-    } min-h-[38px] max-h-[38px]  transition-all duration-300 ease-in-out hover:text-gray-950 hover:scale-[1.02] hover:-translate-y-1
-       ${
-         d.SeatNo === null
-           ? ""
-           : existingSeats.some((seat) => seat.SeatId === d.SeatId)
-           ? "bg-yellow-500 text-gray-950 hover:bg-yellow-400 hover:border-yellow-400 border-yellow-500"
-           : "hover:bg-white hover:animate-pulse"
-       }`}
-                onClick={d.SeatNo !== null ? () => selectSeat(d) : null}
+    } min-h-[38px] max-h-[38px] transition-all duration-300 ease-in-out ${
+                  d.SeatNo === null
+                    ? ""
+                    : existingSeats.some((seat) => seat.SeatId === d.SeatId)
+                    ? "bg-yellow-500 text-gray-950 hover:bg-yellow-400 hover:border-yellow-400 border-yellow-500"
+                    : "hover:bg-white hover:animate-pulse hover:text-gray-950 hover:-translate-y-1"
+                } ${
+                  purchasedSeats.some(
+                    (purchasedSeat) => purchasedSeat.SeatId === d.SeatId
+                  )
+                    ? "bg-red-700 border-red-700 border-2 cursor-not-allowed hover:bg-red-700 hover:translate-y-0 hover:text-white hover:animate-none"
+                    : ""
+                }`}
+                onClick={
+                  d.SeatNo !== null &&
+                  !purchasedSeats.some(
+                    (purchasedSeat) => purchasedSeat.SeatId === d.SeatId
+                  )
+                    ? () => selectSeat(d)
+                    : null
+                }
               >
                 <div className="flex justify-center items-center">
                   <span
@@ -237,25 +298,36 @@ export default function Seat({ data, selectSeat, roomId }) {
             .map((d, index) => (
               <div
                 key={index}
-                className={`
-    ${
-      d.SeatNo === null
-        ? "opacity-0 cursor-default"
-        : "border-white border-2 cursor-pointer"
-    }
+                className={`${
+                  d.SeatNo === null
+                    ? "opacity-0 cursor-default"
+                    : "border-white border-2 cursor-pointer"
+                }
     rounded-xl mt-3 inline-block p-1 ml-3 ${
       d.SeatType == "couple"
         ? "min-w-[68px] max-w-[68px]"
         : "min-w-[38px] max-w-[38px]"
-    }  min-h-[38px] max-h-[38px]  transition-all duration-300 ease-in-out hover:text-gray-950 hover:scale-[1.02] hover:-translate-y-1
-       ${
-         d.SeatNo === null
-           ? ""
-           : existingSeats.some((seat) => seat.SeatId === d.SeatId)
-           ? "bg-yellow-500 text-gray-950 hover:bg-yellow-400 hover:border-yellow-400 border-yellow-500"
-           : "hover:bg-white hover:animate-pulse"
-       }`}
-                onClick={d.SeatNo !== null ? () => selectSeat(d) : null}
+    } min-h-[38px] max-h-[38px] transition-all duration-300 ease-in-out ${
+                  d.SeatNo === null
+                    ? ""
+                    : existingSeats.some((seat) => seat.SeatId === d.SeatId)
+                    ? "bg-yellow-500 text-gray-950 hover:bg-yellow-400 hover:border-yellow-400 border-yellow-500"
+                    : "hover:bg-white hover:animate-pulse hover:text-gray-950 hover:-translate-y-1"
+                } ${
+                  purchasedSeats.some(
+                    (purchasedSeat) => purchasedSeat.SeatId === d.SeatId
+                  )
+                    ? "bg-red-700 border-red-700 border-2 cursor-not-allowed hover:bg-red-700 hover:translate-y-0 hover:text-white hover:animate-none"
+                    : ""
+                }`}
+                onClick={
+                  d.SeatNo !== null &&
+                  !purchasedSeats.some(
+                    (purchasedSeat) => purchasedSeat.SeatId === d.SeatId
+                  )
+                    ? () => selectSeat(d)
+                    : null
+                }
               >
                 <div className="flex justify-center items-center">
                   <span
@@ -278,25 +350,36 @@ export default function Seat({ data, selectSeat, roomId }) {
             .map((d, index) => (
               <div
                 key={index}
-                className={`
-    ${
-      d.SeatNo === null
-        ? "opacity-0 cursor-default"
-        : "border-white border-2 cursor-pointer"
-    }
+                className={`${
+                  d.SeatNo === null
+                    ? "opacity-0 cursor-default"
+                    : "border-white border-2 cursor-pointer"
+                }
     rounded-xl mt-3 inline-block p-1 ml-3 ${
       d.SeatType == "couple"
         ? "min-w-[68px] max-w-[68px]"
         : "min-w-[38px] max-w-[38px]"
-    }  min-h-[38px] max-h-[38px]  transition-all duration-300 ease-in-out hover:text-gray-950 hover:scale-[1.02] hover:-translate-y-1
-       ${
-         d.SeatNo === null
-           ? ""
-           : existingSeats.some((seat) => seat.SeatId === d.SeatId)
-           ? "bg-yellow-500 text-gray-950 hover:bg-yellow-400 hover:border-yellow-400 border-yellow-500"
-           : "hover:bg-white hover:animate-pulse"
-       }`}
-                onClick={d.SeatNo !== null ? () => selectSeat(d) : null}
+    } min-h-[38px] max-h-[38px] transition-all duration-300 ease-in-out ${
+                  d.SeatNo === null
+                    ? ""
+                    : existingSeats.some((seat) => seat.SeatId === d.SeatId)
+                    ? "bg-yellow-500 text-gray-950 hover:bg-yellow-400 hover:border-yellow-400 border-yellow-500"
+                    : "hover:bg-white hover:animate-pulse hover:text-gray-950 hover:-translate-y-1"
+                } ${
+                  purchasedSeats.some(
+                    (purchasedSeat) => purchasedSeat.SeatId === d.SeatId
+                  )
+                    ? "bg-red-700 border-red-700 border-2 cursor-not-allowed hover:bg-red-700 hover:translate-y-0 hover:text-white hover:animate-none"
+                    : ""
+                }`}
+                onClick={
+                  d.SeatNo !== null &&
+                  !purchasedSeats.some(
+                    (purchasedSeat) => purchasedSeat.SeatId === d.SeatId
+                  )
+                    ? () => selectSeat(d)
+                    : null
+                }
               >
                 <div className="flex justify-center items-center">
                   <span
@@ -319,25 +402,36 @@ export default function Seat({ data, selectSeat, roomId }) {
             .map((d, index) => (
               <div
                 key={index}
-                className={`
-    ${
-      d.SeatNo === null
-        ? "opacity-0 cursor-default"
-        : "border-white border-2 cursor-pointer"
-    }
+                className={`${
+                  d.SeatNo === null
+                    ? "opacity-0 cursor-default"
+                    : "border-white border-2 cursor-pointer"
+                }
     rounded-xl mt-3 inline-block p-1 ml-3 ${
       d.SeatType == "couple"
         ? "min-w-[68px] max-w-[68px]"
         : "min-w-[38px] max-w-[38px]"
-    }  min-h-[38px] max-h-[38px]  transition-all duration-300 ease-in-out hover:text-gray-950 hover:scale-[1.02] hover:-translate-y-1
-       ${
-         d.SeatNo === null
-           ? ""
-           : existingSeats.some((seat) => seat.SeatId === d.SeatId)
-           ? "bg-yellow-500 text-gray-950 hover:bg-yellow-400 hover:border-yellow-400 border-yellow-500"
-           : "hover:bg-white hover:animate-pulse"
-       }`}
-                onClick={d.SeatNo !== null ? () => selectSeat(d) : null}
+    } min-h-[38px] max-h-[38px] transition-all duration-300 ease-in-out ${
+                  d.SeatNo === null
+                    ? ""
+                    : existingSeats.some((seat) => seat.SeatId === d.SeatId)
+                    ? "bg-yellow-500 text-gray-950 hover:bg-yellow-400 hover:border-yellow-400 border-yellow-500"
+                    : "hover:bg-white hover:animate-pulse hover:text-gray-950 hover:-translate-y-1"
+                } ${
+                  purchasedSeats.some(
+                    (purchasedSeat) => purchasedSeat.SeatId === d.SeatId
+                  )
+                    ? "bg-red-700 border-red-700 border-2 cursor-not-allowed hover:bg-red-700 hover:translate-y-0 hover:text-white hover:animate-none"
+                    : ""
+                }`}
+                onClick={
+                  d.SeatNo !== null &&
+                  !purchasedSeats.some(
+                    (purchasedSeat) => purchasedSeat.SeatId === d.SeatId
+                  )
+                    ? () => selectSeat(d)
+                    : null
+                }
               >
                 <div className="flex justify-center items-center">
                   <span
@@ -401,25 +495,88 @@ export default function Seat({ data, selectSeat, roomId }) {
             .map((d, index) => (
               <div
                 key={index}
-                className={`
-    ${
-      d.SeatNo === null
-        ? "opacity-0 cursor-default"
-        : "border-white border-2 cursor-pointer"
-    }
+                className={`${
+                  d.SeatNo === null
+                    ? "opacity-0 cursor-default"
+                    : "border-white border-2 cursor-pointer"
+                }
     rounded-xl mt-3 inline-block p-1 ml-3 ${
       d.SeatType == "couple"
         ? "min-w-[68px] max-w-[68px]"
         : "min-w-[38px] max-w-[38px]"
-    }  min-h-[38px] max-h-[38px]  transition-all duration-300 ease-in-out hover:text-gray-950 hover:scale-[1.02] hover:-translate-y-1
-       ${
-         d.SeatNo === null
-           ? ""
-           : existingSeats.some((seat) => seat.SeatId === d.SeatId)
-           ? "bg-yellow-500 text-gray-950 hover:bg-yellow-400 hover:border-yellow-400 border-yellow-500"
-           : "hover:bg-white hover:animate-pulse"
-       }`}
-                onClick={d.SeatNo !== null ? () => selectSeat(d) : null}
+    } min-h-[38px] max-h-[38px] transition-all duration-300 ease-in-out ${
+                  d.SeatNo === null
+                    ? ""
+                    : existingSeats.some((seat) => seat.SeatId === d.SeatId)
+                    ? "bg-yellow-500 text-gray-950 hover:bg-yellow-400 hover:border-yellow-400 border-yellow-500"
+                    : "hover:bg-white hover:animate-pulse hover:text-gray-950 hover:-translate-y-1"
+                } ${
+                  purchasedSeats.some(
+                    (purchasedSeat) => purchasedSeat.SeatId === d.SeatId
+                  )
+                    ? "bg-red-700 border-red-700 border-2 cursor-not-allowed hover:bg-red-700 hover:translate-y-0 hover:text-white hover:animate-none"
+                    : ""
+                }`}
+                onClick={
+                  d.SeatNo !== null &&
+                  !purchasedSeats.some(
+                    (purchasedSeat) => purchasedSeat.SeatId === d.SeatId
+                  )
+                    ? () => selectSeat(d)
+                    : null
+                }
+              >
+                <div className="flex justify-center items-center">
+                  <span
+                    className={`text-sm inline-block ${
+                      d.SeatNo === null ? "opacity-0" : ""
+                    }`}
+                  >
+                    {d.RowName}
+                    {d.SeatNo}
+                  </span>
+                </div>
+              </div>
+            ))}
+      </div>
+
+      <div className="flex justify-center">
+        {data &&
+          data
+            .filter((d) => d.RowName === "L")
+            .map((d, index) => (
+              <div
+                key={index}
+                className={`${
+                  d.SeatNo === null
+                    ? "opacity-0 cursor-default"
+                    : "border-white border-2 cursor-pointer"
+                }
+    rounded-xl mt-3 inline-block p-1 ml-3 ${
+      d.SeatType == "couple"
+        ? "min-w-[68px] max-w-[68px]"
+        : "min-w-[38px] max-w-[38px]"
+    } min-h-[38px] max-h-[38px] transition-all duration-300 ease-in-out ${
+                  d.SeatNo === null
+                    ? ""
+                    : existingSeats.some((seat) => seat.SeatId === d.SeatId)
+                    ? "bg-yellow-500 text-gray-950 hover:bg-yellow-400 hover:border-yellow-400 border-yellow-500"
+                    : "hover:bg-white hover:animate-pulse hover:text-gray-950 hover:-translate-y-1"
+                } ${
+                  purchasedSeats.some(
+                    (purchasedSeat) => purchasedSeat.SeatId === d.SeatId
+                  )
+                    ? "bg-red-700 border-red-700 border-2 cursor-not-allowed hover:bg-red-700 hover:translate-y-0 hover:text-white hover:animate-none"
+                    : ""
+                }`}
+                onClick={
+                  d.SeatNo !== null &&
+                  !purchasedSeats.some(
+                    (purchasedSeat) => purchasedSeat.SeatId === d.SeatId
+                  )
+                    ? () => selectSeat(d)
+                    : null
+                }
               >
                 <div className="flex justify-center items-center">
                   <span
